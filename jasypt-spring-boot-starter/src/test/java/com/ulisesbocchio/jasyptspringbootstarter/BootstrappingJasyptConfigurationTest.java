@@ -7,7 +7,6 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
-import org.springframework.cloud.bootstrap.BootstrapApplicationListener;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
@@ -116,13 +115,8 @@ public class BootstrappingJasyptConfigurationTest {
 
         @Override
         public int getOrder() {
-            // order should be greater than
-            // BootstrapApplicationListener.DEFAULT_ORDER - so that this
-            // listener is invoked after BootstrapApplicationListener, otherwise
-            // bootstrap.properties will not have been read. This is required
-            // since encrypted text (i.e.
-            // passwords) could be configured in bootstrap.properties.
-            return BootstrapApplicationListener.DEFAULT_ORDER + 1;
+            // Run late so cloud/bootstrap listeners complete before assertions.
+            return Ordered.LOWEST_PRECEDENCE;
         }
     }
 

@@ -12,10 +12,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
-        <spring.boot.version>3.5.0</spring.boot.version>
-        <spring.cloud.version>2023.0.2</spring.cloud.version>
+        <java.version>21</java.version>
+        <spring.boot.version>4.2.0</spring.boot.version>
+        <spring.cloud.version>2026.0.0</spring.cloud.version>
         <jasypt.version>1.9.3</jasypt.version>
+        <spring.security.rsa.version>1.1.5</spring.security.rsa.version>
         <maven.compiler.version>3.13.0</maven.compiler.version>
         <system.rules.version>1.19.0</system.rules.version>
         <junit-pioneer.version>2.3.0</junit-pioneer.version>
@@ -108,6 +109,7 @@
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                        <proc>full</proc>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -200,6 +202,11 @@
                 <groupId>org.jasypt</groupId>
                 <artifactId>jasypt</artifactId>
                 <version>${jasypt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-rsa</artifactId>
+                <version>${spring.security.rsa.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
